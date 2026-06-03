@@ -1,0 +1,48 @@
+## .NET
+bin/
+obj/
+out/
+*.user
+*.suo
+.vs/
+*.userprefs
+*.cachefile
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+
+## IDE
+.vs/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+## Secrets & Local
+*.db
+*.db-shm
+*.db-wal
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.local
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+## Logs
+*.log
+logs/
+
+## Test results
+[Tt]est[Rr]esult*/
+TestResults/
+*.coverage
+*.coveragexml

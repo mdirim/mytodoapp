@@ -1,0 +1,79 @@
+@model MyTodoApp.Models.TodoItem
+@{
+    ViewData["Title"] = "Görev Detayı";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header @(Model.IsDone ? "bg-success" : "bg-info") text-white">
+                <h4 class="mb-0">
+                    <i class="bi @(Model.IsDone ? "bi-check-circle-fill" : "bi-info-circle")"></i>
+                    Görev Detayı
+                </h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Title)</dt>
+                    <dd class="col-sm-9 fs-5 @(Model.IsDone ? "text-decoration-line-through text-muted" : "")">
+                        @Model.Title
+                    </dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Description)</dt>
+                    <dd class="col-sm-9">
+                        @if (string.IsNullOrEmpty(Model.Description))
+                        {
+                            <em class="text-muted">Açıklama eklenmemiş</em>
+                        }
+                        else
+                        {
+                            @Model.Description
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.IsDone)</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.IsDone)
+                        {
+                            <span class="badge bg-success"><i class="bi bi-check-circle-fill"></i> Tamamlandı</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning"><i class="bi bi-hourglass-split"></i> Bekliyor</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CreatedAt)</dt>
+                    <dd class="col-sm-9">
+                        <i class="bi bi-calendar3"></i> @Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                    </dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.DueDate)</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.DueDate.HasValue)
+                        {
+                            <span class="badge bg-info">
+                                <i class="bi bi-flag-fill"></i> @Model.DueDate.Value.ToString("dd.MM.yyyy")
+                            </span>
+                        }
+                        else
+                        {
+                            <em class="text-muted">Son tarih belirlenmemiş</em>
+                        }
+                    </dd>
+                </dl>
+
+                <hr />
+
+                <div class="d-flex gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        <i class="bi bi-pencil"></i> Düzenle
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Listeye Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+@model MyTodoApp.Models.TodoItem
+@{
+    ViewData["Title"] = "Görevi Sil";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm border-danger">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> Görevi Sil</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-circle"></i>
+                    Bu görevi silmek istediğinden emin misin? Bu işlem geri alınamaz.
+                </div>
+
+                <dl class="row">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Title)</dt>
+                    <dd class="col-sm-9 fs-5">@Model.Title</dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Description)</dt>
+                    <dd class="col-sm-9">@(Model.Description ?? "—")</dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CreatedAt)</dt>
+                    <dd class="col-sm-9">@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash-fill"></i> Evet, Sil
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-x-lg"></i> Vazgeç
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
