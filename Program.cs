@@ -67,7 +67,8 @@ app.MapControllerRoute(
 
 app.Run();
 
-// postgresql://user:password@host:port/dbname?sslmode=require
+// postgresql://user:***@host:port/dbname?sslmode=require
+// veya postgresql://user:***@host/dbname (port yok, varsayilan 5432)
 static string ConvertPostgresUrlToConnString(string url)
 {
     var uri = new Uri(url);
@@ -75,14 +76,19 @@ static string ConvertPostgresUrlToConnString(string url)
     var db = uri.AbsolutePath.TrimStart('/');
     var query = uri.Query;
 
+    // Port belirtilmemisse 5432 (PostgreSQL varsayilani) kullan
+    var port = uri.Port == -1 ? 5432 : uri.Port;
+
+    // Query string'i parse et (sslmode vs.)
+    var hasSsl = query.Contains("sslmode", StringComparison.OrdinalIgnoreCase);
+
     var connStr =
         $"Host={uri.Host};" +
-        $"Port={uri.Port};" +
+        $"Port={port};" +
         $"Database={db};" +
         $"Username={Uri.UnescapeDataString(userInfo[0])};" +
         $"Password={Uri.UnescapeDataString(userInfo[1])};" +
-        $"Ssl Mode=Require;" +
-        (query.Length > 1 ? $"Trust Server Certificate=true;" : "");
+        (hasSsl ? "Ssl Mode=Require;Trust Server Certificate=true;" : "");
 
     return connStr;
 }
