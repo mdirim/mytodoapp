@@ -42,7 +42,9 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"❌ Veritabanı hatası: {ex.Message}");
+        Console.WriteLine($"❌ VERİTABANI HATASI: {ex.Message}");
+        Console.WriteLine($"   Inner: {ex.InnerException?.Message}");
+        Console.WriteLine($"   Stack: {ex.StackTrace}");
     }
 }
 
