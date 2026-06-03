@@ -30,6 +30,10 @@ appsettings.Development.json
 appsettings.Local.json
 .env
 .env.local
+.token
+*.pem
+deploy.bat
+.repo-response.json
 
 ## NuGet
 *.nupkg

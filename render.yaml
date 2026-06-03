@@ -8,11 +8,11 @@ databases:
 services:
   - type: web
     name: mytodoapp
-    runtime: dotnet
+    runtime: docker
     plan: free
     region: oregon
-    buildCommand: dotnet publish -c Release -o ./publish
-    startCommand: dotnet publish -c Release -o ./publish && dotnet ./publish/MyTodoApp.dll
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
@@ -21,6 +21,4 @@ services:
           name: todoapp-db
           property: connectionString
       - key: PORT
-        value: 10000
-      - key: ASPNETCORE_URLS
-        value: http://+:10000
+        value: "10000"
