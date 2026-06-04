@@ -63,7 +63,7 @@ public class TodosController : Controller
     {
         if (ModelState.IsValid)
         {
-            item.CreatedAt = DateTime.Now;
+            item.CreatedAt = DateTime.UtcNow;
             item.IsDone = false;
             _db.Add(item);
             await _db.SaveChangesAsync();

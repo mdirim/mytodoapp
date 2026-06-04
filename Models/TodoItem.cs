@@ -19,7 +19,7 @@ public class TodoItem
     public bool IsDone { get; set; }
 
     [DisplayName("Oluşturulma Tarihi")]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [DisplayName("Son Tarih")]
     [DataType(DataType.Date)]

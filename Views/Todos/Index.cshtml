@@ -91,11 +91,11 @@ else
                             <p class="mb-1 text-muted small">@item.Description</p>
                         }
                         <small class="text-muted">
-                            <i class="bi bi-calendar3"></i> @item.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                            <i class="bi bi-calendar3"></i> @item.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
                             @if (item.DueDate.HasValue)
                             {
                                 <span class="ms-2 badge bg-info">
-                                    <i class="bi bi-flag"></i> Son: @item.DueDate.Value.ToString("dd.MM.yyyy")
+                                    <i class="bi bi-flag"></i> Son: @item.DueDate.Value.ToLocalTime().ToString("dd.MM.yyyy")
                                 </span>
                             }
                         </small>

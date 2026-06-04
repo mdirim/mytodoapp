@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using MyTodoApp.Models;
 
+// Npgsql: Tüm DateTime'lari UTC gibi kabul et (legacy davranisi)
+// Bu, Kind=Unspecified ve Kind=Local DateTime'larin PostgreSQL'e yazilmasini saglar
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
